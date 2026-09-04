@@ -9,7 +9,7 @@ export function Footer() {
           </p>
 
           <h2 className="max-w-xl text-3xl font-medium leading-tight tracking-[-0.03em] md:text-5xl">
-            Have an idea, project, or just want to talk tech?
+            Have an idea, project, or just want to talk? Let me know
           </h2>
 
           <a

@@ -1,3 +1,5 @@
+import { ThemeToggle } from "@/components/theme/theme-toggle";
+
 export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -30,6 +32,7 @@ export function Navbar() {
           >
             Contact
           </a>
+          <ThemeToggle />
         </div>
       </nav>
     </header>
