@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Mhd. Ridwan — IT enthusiast exploring networking, cybersecurity, software development, and systems through hands-on work."
+    />
+    <meta
+      property="og:title"
+      content="Mhd. Ridwan — Networking · Security · Software"
+    />
+    <meta
+      property="og:description"
+      content="A lightweight personal portfolio by Mhd. Ridwan."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://mhdridwan.te.student.pens.ac.id/"
+    />
+    <meta property="og:image" content="profile.jpg" />
+    <title>Mhd. Ridwan — Portfolio</title>
+    <link rel="icon" href="profile.jpg" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem("ridwan-theme");
+          const system = matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+          document.documentElement.dataset.theme = saved || system;
+        } catch (_) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="progress" id="scrollProgress" aria-hidden="true"></div>
+    <a class="skip-link" href="#work">Skip to content</a>
+
+    <header class="site-header" id="siteHeader">
+      <div class="container nav-wrap">
+        <a class="brand" href="#home" aria-label="Mhd. Ridwan home">
+          <span class="brand-avatar">MR</span>
+          <span>MHD. RIDWAN</span>
+        </a>
+
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <a href="#work" class="nav-link">Work</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#journey" class="nav-link">Journey</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button
+            class="icon-button"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch theme"
+          >
+            <span id="themeIcon" aria-hidden="true">☾</span>
+          </button>
+          <button
+            class="icon-button menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <p class="kicker">
+              <span></span> NETWORKING · CYBERSECURITY · SOFTWARE DEVELOPMENT·
+              SYSTEM IoT
+            </p>
+            <h1>
+              I like
+              <span id="dynamic-text"
+                >figuring out <em>how things work.</em></span
+              >
+            </h1>
+            <p class="hero-intro">
+              I'm Mhd. Ridwan — a PENS student who spends a lot of time around
+              networks, Linux, software, and security. Most of what I learn
+              starts with a small project, a broken thing, and a lot of digging.
+            </p>
+
+            <div
+              class="hero-roles"
+              id="heroRoles"
+              aria-label="Areas of interest"
+            >
+              <button
+                class="role-chip active"
+                type="button"
+                data-role="networking"
+              >
+                Networking
+              </button>
+              <button class="role-chip" type="button" data-role="security">
+                Cyber Security
+              </button>
+              <button class="role-chip" type="button" data-role="software">
+                Software
+              </button>
+              <button class="role-chip" type="button" data-role="systems">
+                Systems
+              </button>
+            </div>
+
+            <div class="hero-actions">
+              <a class="button primary" href="#work"
+                >See what I've built <span>↗</span></a
+              >
+              <a class="button secondary" href="#contact">Hit me up</a>
+            </div>
+
+            <div class="hero-note">
+              <span class="pulse-dot"></span>
+              <span>Scroll down to know more about me!</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal delay-1">
+            <div class="photo-card">
+              <div class="photo-frame">
+                <img
+                  src="profile.jpg"
+                  alt="Portrait of Mhd. Ridwan"
+                  onerror="
+                    this.hidden = true;
+                    document.getElementById('photoFallback').hidden = false;
+                  "
+                />
+                <div class="photo-fallback" id="photoFallback" hidden>MR</div>
+              </div>
+              <div class="photo-caption">
+                <span>Based in Surabaya</span>
+                <span class="caption-dot"></span>
+                <span>Currently learning</span>
+              </div>
+            </div>
+
+            <div class="focus-card" id="focusCard">
+              <div class="focus-head">
+                <span>WHAT I'M INTO</span>
+                <span class="mono">/01</span>
+              </div>
+              <div class="focus-body">
+                <h2 id="roleTitle">Networking</h2>
+                <p id="roleCopy">
+                  Understanding how hosts, services, routes, and packets fit
+                  together — then troubleshooting the part that doesn't.
+                </p>
+                <div class="focus-tags" id="roleTags">
+                  <span>Linux</span><span>TCP/IP</span><span>Wireshark</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit-word">BUILD · BREAK · LEARN</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-strip">
+        <div class="container strip-inner">
+          <p class="strip-lead">
+            A portfolio of things I've actually spent time building, debugging,
+            and understanding.
+          </p>
+          <span class="strip-arrow">↓</span>
+        </div>
+      </section>
+
+      <section class="section work" id="work">
+        <div class="container">
+          <div class="section-top reveal">
+            <div>
+              <p class="section-label">01 / SELECTED WORK</p>
+              <h2>The projects say more than the labels.</h2>
+            </div>
+            <p class="section-copy">
+              A mix of networking labs, security practice, software projects,
+              and systems work. No fake case studies — just things I've worked
+              on.
+            </p>
+          </div>
+
+          <div
+            class="filter-bar reveal"
+            id="projectFilters"
+            role="group"
+            aria-label="Filter projects"
+          >
+            <button class="filter active" type="button" data-filter="all">
+              All
+            </button>
+            <button class="filter" type="button" data-filter="networking">
+              Networking
+            </button>
+            <button class="filter" type="button" data-filter="security">
+              Security
+            </button>
+            <button class="filter" type="button" data-filter="software">
+              Software
+            </button>
+            <button class="filter" type="button" data-filter="systems">
+              Systems
+            </button>
+          </div>
+
+          <div class="project-grid" id="projectsGrid"></div>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about">
+        <div class="container about-grid">
+          <div class="about-copy reveal">
+            <p class="section-label">02 / ABOUT</p>
+            <h2>Curious first. Technical second. Always learning.</h2>
+            <p>
+              I study Telecommunication Engineering at PENS, but the work I
+              enjoy most sits a little wider than the course title: networking,
+              cybersecurity, software, Linux, IoT, and the messy bits that
+              connect them.
+            </p>
+            <p>
+              I learn best by building something tangible. That's why this site
+              leans on projects instead of a giant list of claims.
+            </p>
+            <a class="text-link" href="#contact"
+              >Let's connect <span>↗</span></a
+            >
+          </div>
+
+          <div class="about-facts reveal delay-1">
+            <div class="fact-card">
+              <span class="fact-label">EDUCATION</span>
+              <strong>D4 Telecommunication Engineering</strong>
+              <span>PENS · 2024 — now</span>
+            </div>
+            <div class="fact-card">
+              <span class="fact-label">FOCUS</span>
+              <strong>Networking · Security · Software · Systems</strong>
+              <span>Hands-on learning</span>
+            </div>
+            <div class="fact-card wide">
+              <span class="fact-label">WORK STYLE</span>
+              <strong
+                >Build it → break it → understand it → document it.</strong
+              >
+              <span>Usually with Linux and a terminal nearby.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section skills-section" id="skills">
+        <div class="container">
+          <div class="section-top reveal">
+            <div>
+              <p class="section-label">03 / TOOLBOX</p>
+              <h2>Tools follow the problem.</h2>
+            </div>
+            <p class="section-copy">
+              No percentage bars. No “Python 97%”. Just the tools I've used
+              while actually trying to make something work.
+            </p>
+          </div>
+
+          <div class="skills-shell reveal">
+            <div
+              class="skill-nav"
+              id="skillNav"
+              role="tablist"
+              aria-label="Skill categories"
+            >
+              <button
+                class="skill-tab active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-skill="networking"
+              >
+                Networking
+              </button>
+              <button
+                class="skill-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-skill="security"
+              >
+                Cyber Security
+              </button>
+              <button
+                class="skill-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-skill="software"
+              >
+                Software
+              </button>
+              <button
+                class="skill-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-skill="systems"
+              >
+                Systems & IoT
+              </button>
+            </div>
+            <div class="skill-content">
+              <div class="skill-meta">
+                <span id="skillEyebrow">NETWORKING</span
+                ><span class="mono">click a category</span>
+              </div>
+              <h3 id="skillTitle">Networking</h3>
+              <p id="skillDescription">
+                Practical work around TCP/IP, interfaces, DHCP, routing, packet
+                analysis, and virtual network labs.
+              </p>
+              <div class="skill-tags" id="skillTags"></div>
+              <div class="skill-foot" id="skillFoot">
+                Linux · GNS3/CPT · Wireshark · TShark · VirtualBox
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section journey-section" id="journey">
+        <div class="container journey-grid">
+          <div class="journey-main reveal">
+            <p class="section-label">04 / JOURNEY</p>
+            <h2>Still learning. Still building.</h2>
+            <div class="timeline" id="timeline">
+              <article class="timeline-item">
+                <span class="timeline-year">2020 — 2023</span>
+                <div>
+                  <h3>Madrasah Aliyah Musthafawiyah</h3>
+                  <p>MIPA</p>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <span class="timeline-year">2024 — NOW</span>
+                <div>
+                  <h3>Politeknik Elektronika Negeri Surabaya</h3>
+                  <p>D4 Telecommunication Engineering · IPK 3.33 / 4.00</p>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <span class="timeline-year">2025 — 2026</span>
+                <div>
+                  <h3>Student Communities</h3>
+                  <p>Himpunan Mahasiswa Teknik Telekomunikasi</p>
+                </div>
+              </article>
+
+              <article class="timeline-item">
+                <span class="timeline-year">2025 — 2026</span>
+                <div>
+                  <h3>Aerospace Communities</h3>
+                  <p>UKM Dirgantara PENS</p>
+                </div>
+              </article>
+
+              <article class="timeline-item">
+                <span class="timeline-year">2026 — NOW</span>
+                <div>
+                  <h3>Software & Developer Communities</h3>
+                  <p>
+                    UKM Software Development PENS · Google Developer Groups on
+                    Campus PENS
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="credentials reveal delay-1">
+            <div class="credentials-head">
+              <span>CREDENTIALS</span><span class="mono">06</span>
+            </div>
+            <button class="credential" type="button">
+              <strong>Intermediate Associate Network Administrator</strong
+              ><span>DEX PENS · Komdigi · 2026</span>
+            </button>
+            <button class="credential" type="button">
+              <strong>Intermediate Associate Computer Network Technician</strong
+              ><span>DEX PENS · Komdigi · 2026</span>
+            </button>
+            <button class="credential" type="button">
+              <strong>From Pixels to Smart Systems</strong
+              ><span>Digistar Club · 2025</span>
+            </button>
+            <button class="credential" type="button">
+              <strong>Mastering the Art of Bug Bounty Hunting</strong
+              ><span>Merdeka Siber · 2026</span>
+            </button>
+            <button class="credential" type="button">
+              <strong>Workshop Dunia Kerja 2026</strong
+              ><span>HMTT PENS · 2026</span>
+            </button>
+            <button class="credential" type="button">
+              <strong>LKKMM-TD PENS 2025</strong><span>BEM PENS · 2025</span>
+            </button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="container contact-box reveal">
+          <div>
+            <p class="section-label">05 / CONTACT</p>
+            <h2>Have a project, internship, or a technical rabbit hole?</h2>
+            <p>
+              I'm open to conversations around networking, cybersecurity,
+              software, systems, and opportunities to learn through real work.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="button primary" href="mailto:mhdridwan1331@gmail.com"
+              >mhdridwan1331@gmail.com <span>↗</span></a
+            >
+            <button class="button secondary" type="button" id="copyEmail">
+              Copy email
+            </button>
+            <div class="socials">
+              <a
+                href="https://github.com/wannn-sion95"
+                target="_blank"
+                rel="noreferrer"
+                >GitHub ↗</a
+              >
+              <a
+                href="https://www.linkedin.com/in/mhd-ridwan/"
+                target="_blank"
+                rel="noreferrer"
+                >LinkedIn ↗</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Mhd. Ridwan</span>
+        <span
+          >Feel free to reach out if you are interested in a collaboration. You
+          can find my contact details above ^_^</span
+        >
+        <button class="top-link" id="backTop" type="button">
+          Back to top ↑
+        </button>
+      </div>
+    </footer>
+
+    <div
+      class="modal"
+      id="projectModal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-bg" data-close-modal></div>
+      <div class="modal-panel">
+        <button
+          class="icon-button modal-close"
+          id="modalClose"
+          type="button"
+          aria-label="Close project details"
+        >
+          ×
+        </button>
+        <div class="modal-label" id="modalMeta"></div>
+        <h2 id="modalTitle">Project</h2>
+        <p class="modal-summary" id="modalDescription"></p>
+        <div class="modal-columns">
+          <div>
+            <span>WHAT I DID</span>
+            <p id="modalContribution"></p>
+          </div>
+          <div>
+            <span>TOOLS</span>
+            <p id="modalTech"></p>
+          </div>
+        </div>
+        <div class="modal-learning">
+          <span>WHAT I LEARNED</span>
+          <p id="modalLearning"></p>
+        </div>
+        <div class="modal-actions">
+          <a
+            class="button primary"
+            id="modalRepo"
+            href="#"
+            target="_blank"
+            rel="noreferrer"
+            hidden
+            >Open GitHub ↗</a
+          >
+          <button class="button secondary" type="button" data-close-modal>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
