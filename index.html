@@ -31,6 +31,7 @@
       content="#f4f5f7"
       media="(prefers-color-scheme: light)"
     />
+
     <title>Mhd. Ridwan — Portfolio</title>
     <link rel="icon" href="profile.jpg" />
     <script>
@@ -46,7 +47,7 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <div class="progress" id="scrollProgress" aria-hidden="true"></div>
@@ -95,7 +96,7 @@
         <div class="container hero-grid">
           <div class="hero-copy reveal">
             <p class="kicker">
-              <span></span> NETWORKING · CYBERSECURITY · SOFTWARE DEVELOPMENT·
+              <span></span> NETWORKING · CYBERSECURITY · SOFTWARE DEVELOPMENT ·
               SYSTEM IoT
             </p>
             <h1>
@@ -410,29 +411,32 @@
             <div class="credentials-head">
               <span>CREDENTIALS</span><span class="mono">06</span>
             </div>
-            <button class="credential" type="button">
-              <strong>Intermediate Associate Network Administrator</strong
-              ><span>DEX PENS · Komdigi · 2026</span>
-            </button>
-            <button class="credential" type="button">
-              <strong>Intermediate Associate Computer Network Technician</strong
-              ><span>DEX PENS · Komdigi · 2026</span>
-            </button>
-            <button class="credential" type="button">
-              <strong>From Pixels to Smart Systems</strong
-              ><span>Digistar Club · 2025</span>
-            </button>
-            <button class="credential" type="button">
-              <strong>Mastering the Art of Bug Bounty Hunting</strong
-              ><span>Merdeka Siber · 2026</span>
-            </button>
-            <button class="credential" type="button">
-              <strong>Workshop Dunia Kerja 2026</strong
-              ><span>HMTT PENS · 2026</span>
-            </button>
-            <button class="credential" type="button">
-              <strong>LKKMM-TD PENS 2025</strong><span>BEM PENS · 2025</span>
-            </button>
+            <div class="credential">
+              <strong>Intermediate Associate Network Administrator</strong>
+              <span>DEX PENS · Komdigi · 2026</span>
+            </div>
+            <div class="credential">
+              <strong
+                >Intermediate Associate Computer Network Technician</strong
+              >
+              <span>DEX PENS · Komdigi · 2026</span>
+            </div>
+            <div class="credential">
+              <strong>From Pixels to Smart Systems</strong>
+              <span>Digistar Club · 2025</span>
+            </div>
+            <div class="credential">
+              <strong>Mastering the Art of Bug Bounty Hunting</strong>
+              <span>Merdeka Siber · 2026</span>
+            </div>
+            <div class="credential">
+              <strong>Workshop Dunia Kerja 2026</strong>
+              <span>HMTT PENS · 2026</span>
+            </div>
+            <div class="credential">
+              <strong>LKKMM-TD PENS 2025</strong>
+              <span>BEM PENS · 2025</span>
+            </div>
           </aside>
         </div>
       </section>
@@ -496,14 +500,6 @@
     >
       <div class="modal-bg" data-close-modal></div>
       <div class="modal-panel">
-        <button
-          class="icon-button modal-close"
-          id="modalClose"
-          type="button"
-          aria-label="Close project details"
-        >
-          ×
-        </button>
         <div class="modal-label" id="modalMeta"></div>
         <h2 id="modalTitle">Project</h2>
         <p class="modal-summary" id="modalDescription"></p>
@@ -539,6 +535,6 @@
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="script.js" defer></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
