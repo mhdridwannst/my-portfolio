@@ -337,26 +337,52 @@ function setSkill(key) {
 }
 
 const modal = $("projectModal");
+
 let lastTrigger = null;
 
 function openProject(id, trigger) {
-  // ... kode Anda sebelumnya ...
+  const p = projects.find((proj) => proj.id === id);
+  if (!p) return;
+
+  // Simpan elemen yang diklik untuk aksesibilitas saat modal ditutup
+  lastTrigger = trigger;
+
+  // Injeksi data ke dalam modal
+  $("modalMeta").textContent = `${p.categoryLabel} — ${p.technologies[0]}`;
+  $("modalTitle").textContent = p.title;
+  $("modalDescription").textContent = p.description;
+  $("modalContribution").textContent = p.contribution;
+  $("modalTech").textContent = p.technologies.join(", ");
+  $("modalLearning").textContent = p.learning;
+
+  const repoBtn = $("modalRepo");
+  if (p.repo) {
+    repoBtn.href = p.repo;
+    repoBtn.hidden = false;
+  } else {
+    repoBtn.hidden = true;
+  }
+
+  // Terapkan inert dan tampilkan modal
   $("siteHeader").inert = true;
   document.querySelector("main").inert = true;
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
-  $("modalClose").focus(); // Memastikan fokus langsung ke tombol close
+  $("modalClose").focus();
 }
 
 function closeProject() {
-  // ... kode Anda sebelumnya ...
   $("siteHeader").inert = false;
   document.querySelector("main").inert = false;
 
   modal.classList.remove("open");
-  // ... sisa kode ...
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+
+  // Kembalikan fokus ke kartu proyek untuk pengguna keyboard/screen reader
+  if (lastTrigger) lastTrigger.focus();
 }
 
 $("themeToggle").addEventListener("click", () =>
@@ -498,15 +524,16 @@ setRole("networking");
 setSkill("networking");
 renderProjects();
 
-// Tambahan di script.js
 $("projectsGrid").addEventListener("mousemove", (e) => {
-  for (const card of document.querySelectorAll(".project-card")) {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
-  }
+  const card = e.target.closest(".project-card");
+  if (!card) return; // Hanya jalankan jika kursor berada di atas kartu
+
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  card.style.setProperty("--mouse-x", `${x}px`);
+  card.style.setProperty("--mouse-y", `${y}px`);
 });
 
 const dynamicText = document.getElementById("dynamic-text");

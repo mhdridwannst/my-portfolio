@@ -1605,3 +1605,11 @@ button {
 #dynamic-text.fade-out {
   opacity: 0;
 }
+
+#dynamic-text {
+  display: inline-block;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  min-width: 9.5ch; /* Sesuaikan dengan teks terpanjang */
+  vertical-align: bottom; /* Menjaga kesejajaran font */
+}
