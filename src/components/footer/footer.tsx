@@ -1,66 +1,145 @@
-export function Footer() {
-  return (
-    <footer id="contact" className="border-t border-white/10 py-16">
-      <div className="grid gap-12 md:grid-cols-2">
-        {/* Closing */}
-        <div>
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-(--muted)">
-            Let&apos;s connect
-          </p>
+"use client";
 
-          <h2 className="max-w-xl text-3xl font-medium leading-tight tracking-[-0.03em] md:text-5xl">
-            Have an idea, project, or just want to talk? Let me know
+import { useState } from "react";
+import { personalInfo } from "@/data/personal";
+import { useLanguage } from "@/context/language-context";
+import { content } from "@/data/translations";
+
+export function Footer() {
+  const [copied, setCopied] = useState(false);
+  const { lang } = useLanguage();
+  const t = content[lang].footer;
+
+  function copyEmail() {
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  }
+
+  return (
+    <footer id="contact" className="border-t border-[var(--line)] py-20 md:py-28">
+      <div className="grid gap-12 lg:grid-cols-12">
+        {/* Kolom Kiri: Closing & Direct Message */}
+        <div className="lg:col-span-7">
+          <span className="inline-block rounded border border-[var(--line)] bg-[var(--surface-raised)] px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-[var(--signal)] font-semibold">
+            {t.tag}
+          </span>
+
+          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-4xl lg:text-5xl">
+            {t.title}
           </h2>
 
-          <a
-            href="mailto:your@email.com"
-            className="mt-8 inline-block border-b border-current pb-1 text-sm transition-opacity hover:opacity-50"
-          >
-            mhdridwan@te.student.pens.ac.id
-          </a>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--muted)]">
+            {t.desc}
+          </p>
+
+          {/* Email Direct & Copy Action */}
+          <div className="mt-8 flex flex-col gap-3">
+            <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
+              {t.directTitle}
+            </span>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="group inline-flex items-center gap-2 text-lg font-semibold text-[var(--foreground)] transition-colors hover:text-[var(--signal)] sm:text-xl"
+              >
+                <span className="border-b border-[var(--line-strong)] pb-0.5 group-hover:border-[var(--signal)]">
+                  {personalInfo.email}
+                </span>
+                <span className="text-sm">↗</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center gap-1.5 rounded-md border border-[var(--line)] bg-[var(--surface)] px-3 py-1.5 font-mono text-xs font-medium text-[var(--foreground)] shadow-2xs transition-all hover:border-[var(--line-strong)] hover:bg-[var(--surface-raised)] active:scale-95"
+                title="Salin alamat email ke clipboard"
+              >
+                {copied ? (
+                  <>
+                    <span className="text-emerald-500 font-bold">✓</span>
+                    <span className="text-emerald-500 font-medium">{t.copied}</span>
+                  </>
+                ) : (
+                  <>
+                    <span>❐</span>
+                    <span>{t.copyEmail}</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Links */}
-        <div className="flex flex-col justify-between md:items-end">
-          <div className="flex flex-wrap gap-x-8 gap-y-4">
+        {/* Kolom Kanan: Quick Link Profile Cards */}
+        <div className="flex flex-col justify-between space-y-8 lg:col-span-5 lg:items-end">
+          <div className="w-full space-y-3 sm:w-80">
+            <span className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
+              {t.verifiedLinks}
+            </span>
+
             <a
-              href="https://github.com/wannn-sion95"
+              href={personalInfo.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="text-sm text-(--muted) transition-colors hover:text-(--foreground)"
+              className="group flex items-center justify-between rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3.5 transition-all hover:border-[var(--line-strong)] hover:bg-[var(--surface-raised)] hover:-translate-y-0.5"
             >
-              GitHub ↗
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-7 w-7 items-center justify-center rounded bg-[#0a66c2]/10 font-mono text-xs font-bold text-[#0a66c2]">
+                  in
+                </span>
+                <span className="text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--signal)]">
+                  LinkedIn Profile
+                </span>
+              </div>
+              <span className="text-xs text-[var(--muted)]">↗</span>
             </a>
 
             <a
-              href="https://www.linkedin.com/in/mhd-ridwan"
+              href={personalInfo.github}
               target="_blank"
               rel="noreferrer"
-              className="text-sm text-(--muted) transition-colors hover:text-(--foreground)"
+              className="group flex items-center justify-between rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3.5 transition-all hover:border-[var(--line-strong)] hover:bg-[var(--surface-raised)] hover:-translate-y-0.5"
             >
-              LinkedIn ↗
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-7 w-7 items-center justify-center rounded bg-[var(--surface-raised)] font-mono text-xs font-bold text-[var(--foreground)]">
+                  gh
+                </span>
+                <span className="text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--signal)]">
+                  GitHub Repositories
+                </span>
+              </div>
+              <span className="text-xs text-[var(--muted)]">↗</span>
             </a>
 
             <a
               href="#home"
-              className="text-sm text-(--muted) transition-colors hover:text-(--foreground)"
+              className="flex items-center justify-between rounded-lg border border-[var(--line)] bg-[var(--surface)] p-3.5 transition-all hover:border-[var(--line-strong)] hover:bg-[var(--surface-raised)]"
             >
-              Back to top ↑
+              <span className="text-sm font-medium text-[var(--muted)]">
+                {t.backToTop}
+              </span>
+              <span className="text-xs text-[var(--muted)]">↑</span>
             </a>
           </div>
 
-          <p className="mt-12 font-mono text-xs leading-5 text-(--muted) md:mt-auto md:pt-24 md:text-right">
-            Based in Surabaya, Indonesia
-            <br />
-            Building, learning, experimenting.
-          </p>
+          <div className="font-mono text-xs text-[var(--muted)] lg:text-right">
+            <p className="font-semibold text-[var(--foreground)]">{personalInfo.institution}</p>
+            <p className="mt-1">
+              {t.campusLoc}
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 font-mono text-[10px] uppercase tracking-[0.15em] text-(--muted) sm:flex-row sm:items-center sm:justify-between">
-        <span>© 2026 Mhd. Ridwan</span>
-
-        <span>Telecommunication Engineering Student</span>
+      {/* Bottom Bar */}
+      <div className="mt-16 flex flex-col gap-4 border-t border-[var(--line)] pt-8 font-mono text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+        <p>© 2026 {personalInfo.name}. All rights reserved.</p>
+        <p className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-[var(--signal)] animate-pulse" />
+          <span>{t.copyrightNote}</span>
+        </p>
       </div>
     </footer>
   );

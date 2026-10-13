@@ -31,7 +31,7 @@ export function RotatingHeadline() {
           <span
             key={interest}
             className={`absolute left-0 top-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              itemIndex === index
+              itemIndex === index && visible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-8 opacity-0"
             }`}

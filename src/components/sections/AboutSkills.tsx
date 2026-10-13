@@ -7,7 +7,7 @@ export default function AboutSkills() {
       {/* Section Header ala Label Dokumen Teknis */}
       <div className="mb-12 border-l-4 border-copper pl-4">
         <h2 className="font-mono text-2xl font-bold uppercase tracking-widest text-foreground">
-          SYS.CAPABILITIES // DOMAIN
+          SYS.CAPABILITIES  DOMAIN
         </h2>
         <p className="mt-2 font-mono text-sm text-muted-foreground">
           [ARCHITECTING PHYSICAL & DIGITAL LAYERS]

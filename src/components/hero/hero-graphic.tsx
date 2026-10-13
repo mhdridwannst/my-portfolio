@@ -1,187 +1,111 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import { useLanguage } from "@/context/language-context";
+import { content } from "@/data/translations";
 
 export function HeroGraphic() {
-  const [rotation, setRotation] = useState({
-    x: 0,
-    y: 0,
-  });
+  const [imgSrc, setImgSrc] = useState("/profile.jpg");
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const { lang } = useLanguage();
+  const t = content[lang].heroGraphic;
 
   function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
-
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateY = ((x - centerX) / centerX) * 5;
-    const rotateX = ((centerY - y) / centerY) * 5;
+    const rotateY = ((x - centerX) / centerX) * 4;
+    const rotateX = ((centerY - y) / centerY) * 4;
 
-    setRotation({
-      x: rotateX,
-      y: rotateY,
-    });
+    setRotation({ x: rotateX, y: rotateY });
   }
 
   function handlePointerLeave() {
-    setRotation({
-      x: 0,
-      y: 0,
-    });
+    setRotation({ x: 0, y: 0 });
   }
 
   return (
-    <div
-      className="group relative w-full max-w-[520px]"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-    >
-      {/* Main panel */}
+    <div className="relative w-full max-w-[420px]">
+      {/* Decorative ambient glow backdrop */}
+      <div className="pointer-events-none absolute -inset-2 rounded-2xl bg-gradient-to-tr from-[var(--signal)]/15 via-sky-500/10 to-transparent blur-xl opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+
+      {/* Main 3D Card Container */}
       <div
-        className="relative aspect-square overflow-hidden border border-[var(--line)] bg-black/[0.015] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="group relative overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[var(--surface)] p-2.5 shadow-xl transition-transform duration-300 ease-out"
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
         style={{
-          transform: `
-            perspective(1200px)
-            rotateX(${rotation.x}deg)
-            rotateY(${rotation.y}deg)
-          `,
+          transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         }}
       >
-        {/* Background grid */}
-        <div className="absolute inset-0 opacity-70">
-          <div
-            className="
-              absolute inset-0
-              bg-[linear-gradient(to_right,rgba(23,23,23,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(23,23,23,0.06)_1px,transparent_1px)]
-              bg-[size:40px_40px]
-            "
-          />
-        </div>
-
-        {/* Center crosshair */}
-        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[var(--line)]" />
-
-        <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-[var(--line)]" />
-
-        {/* Outer orbit */}
-        <div
-          className="
-            absolute
-            left-1/2
-            top-1/2
-            h-[62%]
-            w-[62%]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            border
-            border-[var(--line)]
-            animate-[spin_18s_linear_infinite]
-            transition-transform
-            duration-700
-            group-hover:[animation-duration:10s]
-          "
-        >
-          {/* Orbiting signal point */}
-          <span className="absolute -right-1 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[var(--signal)] shadow-[0_0_0_4px_rgba(228,87,46,0.12)]" />
-        </div>
-
-        {/* Middle orbit */}
-        <div
-          className="
-            absolute
-            left-1/2
-            top-1/2
-            h-[42%]
-            w-[42%]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            border
-            border-[var(--line)]
-            animate-[spin_11s_linear_infinite_reverse]
-            transition-transform
-            duration-700
-            group-hover:[animation-duration:7s]
-          "
-        >
-          {/* Secondary signal */}
-          <span className="absolute -left-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[var(--foreground)] opacity-50" />
-        </div>
-
-        {/* Inner orbit */}
-        <div
-          className="
-            absolute
-            left-1/2
-            top-1/2
-            h-[24%]
-            w-[24%]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            border
-            border-[var(--line)]
-            animate-[spin_7s_linear_infinite]
-          "
-        >
-          <span className="absolute -right-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[var(--signal)] opacity-70" />
-        </div>
-
-        {/* Core */}
-        <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--background)]">
-          <div className="h-3 w-3 rounded-full bg-[var(--signal)]" />
-        </div>
-
-        {/* Top metadata */}
-        <div className="absolute left-6 top-6">
-          <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--muted)]">
-            System / 001
-          </p>
-
-          <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--muted)]">
-            RF / Network / Signal
-          </p>
-        </div>
-
-        {/* Top-right status */}
-        <div className="absolute right-6 top-6 flex items-center gap-2">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--signal)]" />
-
-          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--muted)]">
-            Active
+        {/* Top Technical Bar */}
+        <div className="flex items-center justify-between border-b border-[var(--line)] px-3 py-2 font-mono text-[10px] text-[var(--muted)]">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-[var(--signal)] animate-pulse" />
+            <span className="font-semibold tracking-wider text-[var(--foreground)]">
+              {t.badge}
+            </span>
+          </div>
+          <span className="uppercase tracking-widest text-[var(--muted)]">
+            {t.institution}
           </span>
         </div>
 
-        {/* Bottom-left metadata */}
-        <div className="absolute bottom-6 left-6">
-          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--muted)]">
-            Signal
-          </p>
+        {/* Image Frame */}
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-[var(--surface-raised)]">
+          {/* Subtle grid on overlay */}
+          <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
-          <p className="mt-2 font-mono text-[10px] text-[var(--foreground)]">
-            5.8 GHz
-          </p>
+          {/* Actual Photo */}
+          <Image
+            src={imgSrc}
+            alt="Mhd. Ridwan"
+            fill
+            priority
+            sizes="(max-width: 768px) 340px, 420px"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            onError={() => {
+              if (imgSrc !== "/profile.svg") {
+                setImgSrc("/profile.svg");
+              }
+            }}
+          />
+
+          {/* Technical Corner Markers */}
+          <span className="absolute left-2.5 top-2.5 z-20 h-3 w-3 border-l-2 border-t-2 border-[var(--signal)]" />
+          <span className="absolute right-2.5 top-2.5 z-20 h-3 w-3 border-r-2 border-t-2 border-[var(--signal)]" />
+          <span className="absolute bottom-2.5 left-2.5 z-20 h-3 w-3 border-b-2 border-l-2 border-[var(--signal)]" />
+          <span className="absolute bottom-2.5 right-2.5 z-20 h-3 w-3 border-b-2 border-r-2 border-[var(--signal)]" />
+
+          {/* Bottom Overlay Info Tag */}
+          <div className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between rounded border border-white/15 bg-black/65 px-3.5 py-2.5 backdrop-blur-md">
+            <div>
+              <p className="font-mono text-[9px] uppercase tracking-widest text-white/60">
+                {t.disciplineLabel}
+              </p>
+              <p className="font-mono text-xs font-semibold text-white">
+                {t.discipline}
+              </p>
+            </div>
+            <div className="text-right font-mono text-[10px] text-white/80">
+              <span className="block text-[8px] text-white/50">{t.regionLabel}</span>
+              {t.regionVal}
+            </div>
+          </div>
         </div>
 
-        {/* Bottom-right coordinates */}
-        <div className="absolute bottom-6 right-6 text-right">
-          <p className="font-mono text-[9px] text-[var(--muted)]">07.2575° S</p>
-
-          <p className="mt-1 font-mono text-[9px] text-[var(--muted)]">
-            112.7521° E
-          </p>
+        {/* Bottom Technical Telemetry Bar */}
+        <div className="flex items-center justify-between px-3 py-2 font-mono text-[10px] text-[var(--muted)]">
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            {t.telemetry}
+          </span>
+          <span className="font-semibold text-[var(--signal)]">{t.status}</span>
         </div>
-
-        {/* Corner markers */}
-        <span className="absolute left-0 top-0 h-4 w-px bg-[var(--signal)]" />
-        <span className="absolute left-0 top-0 h-px w-4 bg-[var(--signal)]" />
-
-        <span className="absolute bottom-0 right-0 h-4 w-px bg-[var(--signal)]" />
-        <span className="absolute bottom-0 right-0 h-px w-4 bg-[var(--signal)]" />
       </div>
     </div>
   );
