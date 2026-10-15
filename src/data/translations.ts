@@ -492,7 +492,7 @@ export const content = {
       pipelineHeading: "Data Flow Pipeline",
       decisionsHeading: "Technical Decisions & Trade-offs",
       techLabel: "Tech:",
-      viewRepo: "View Code on GitHub",
+      viewRepo: "Visit website",
       projects: [
         {
           number: "01",
@@ -527,7 +527,7 @@ export const content = {
             "Vercel",
           ],
           year: "2026",
-          githubUrl: "https://github.com/mhdridwannst",
+          githubUrl: "https://kasir-nasution.vercel.app",
           architecture: {
             pipeline: [
               "React Frontend (Vite)",
@@ -577,7 +577,7 @@ export const content = {
             "Tailwind CSS",
           ],
           year: "2026",
-          githubUrl: "https://github.com/mhdridwannst",
+          githubUrl: "https://sistem-monitoring-suhu-cuaca-kelemb.vercel.app/",
           architecture: {
             pipeline: [
               "ESP32 Microcontroller (C++)",
@@ -627,7 +627,7 @@ export const content = {
             "HTML5 Audio API",
           ],
           year: "2026",
-          githubUrl: "https://github.com/mhdridwannst",
+          githubUrl: "https://one-app-music.vercel.app/",
           architecture: {
             pipeline: [
               "Next.js Client (App Router)",
