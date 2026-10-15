@@ -177,7 +177,7 @@ export const content = {
             "Vercel",
           ],
           year: "2026",
-          githubUrl: "https://kasir-nasution.vercel.app/login",
+          githubUrl: "https://kasir-nasution.vercel.app",
           architecture: {
             pipeline: [
               "React Frontend (Vite)",
